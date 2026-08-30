@@ -75,14 +75,17 @@ CUSTOM_CSS = """
     }
 
     /* اصلاح راست‌چین و Justify متن درون Expander ها */
-    [data-testid="stExpander"] {
+    [data-testid="stExpander"] summary span:first-child,
+    span[data-testid="stExpanderToggleIcon"] {
+        font-family: 'Material Symbols Outlined' !important;
+        font-weight: normal !important;
+        font-style: normal !important;
         direction: rtl !important;
         text-align: right !important;
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 12px !important;
         display: inline-block !important;
-        background-color: #daf39e  !important;
-        margin-bottom: 1rem !important;
+        white-space: nowrap !important;
+        word-wrap: normal !important;
+        background-color: #daf39e !important;
     }
     
     [data-testid="stExpander"] summary {
@@ -94,15 +97,13 @@ CUSTOM_CSS = """
         justify-content: space-between !important;
         gap: 12px !important;
         background-color: #daf39e !important;
-        border-radius: 10px !important;
-        padding: 0.75rem 1rem !important;
     }
-
-    [data-testid="stExpander"] [data-testid="stMarkdownContainer"] p,
-    [data-testid="stExpander"] div {
-        direction: rtl !important;
-        text-align: justify !important;
-        line-height: 1.8 !important;
+    
+    [data-testid="stExpander"] summary svg {
+        margin: 0 !important;
+        padding: 0 !important;
+        min-width: 18px !important;
+        min-height: 18px !important;
     }
 
     [data-testid="stSidebarCollapseButton"] {
