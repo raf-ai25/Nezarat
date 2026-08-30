@@ -80,7 +80,8 @@ CUSTOM_CSS = """
         text-align: right !important;
         border: 1px solid #cbd5e1 !important;
         border-radius: 12px !important;
-        background-color: #ffffff !important;
+        display: inline-block !important;
+        background-color: #daf39e  !important;
         margin-bottom: 1rem !important;
     }
     
@@ -92,7 +93,7 @@ CUSTOM_CSS = """
         align-items: center !important;
         justify-content: space-between !important;
         gap: 12px !important;
-        background-color: #f1f5f9 !important;
+        background-color: #daf39e !important;
         border-radius: 10px !important;
         padding: 0.75rem 1rem !important;
     }
