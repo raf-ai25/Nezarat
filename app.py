@@ -33,7 +33,7 @@ st.set_page_config(
 )
 
 # ==========================================
-# ۳. استایل‌دهی جامع RTL، اصلاح فونت عناوین و UX پیشرفته
+# ۳. استایل‌دهی جامع RTL، اصلاح تب‌ها، چت‌بات و UX
 # ==========================================
 CUSTOM_CSS = """
 <style>
@@ -236,39 +236,63 @@ CUSTOM_CSS = """
         font-weight: 600;
     }
 
-    /* اصلاح جامع Tabها برای سرور کلود */
-    div[data-testid="stTabs"] [data-baseweb="tab-list"] {
+    /* ==========================================
+       اصلاح کامل و جامع Tab ها و فواصل آن‌ها
+       ========================================== */
+    div[data-testid="stTabs"] {
+        direction: rtl !important;
+        margin-top: 1rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    div[data-testid="stTabs"] [data-baseweb="tab-list"],
+    div[data-testid="stTabs"] > div:first-child {
         gap: 12px !important;
-        border-bottom: 2px solid #e2e8f0 !important;
+        border-bottom: 2px solid #cbd5e1 !important;
         padding-bottom: 0px !important;
         direction: rtl !important;
+        justify-content: flex-start !important;
+        display: flex !important;
     }
 
     div[data-testid="stTabs"] button[data-baseweb="tab"],
+    div[data-testid="stTabs"] button[role="tab"],
     .stTabs [data-baseweb="tab"] {
         height: 48px !important;
         background-color: #ffffff !important;
         border-radius: 10px 10px 0 0 !important;
-        padding: 10px 24px !important;
+        padding: 8px 20px !important;
         font-weight: 700 !important;
+        font-size: 0.95rem !important;
         color: #475569 !important;
-        border: 1px solid #e2e8f0 !important;
+        border: 1px solid #cbd5e1 !important;
         border-bottom: none !important;
         transition: all 0.2s ease !important;
         direction: rtl !important;
+        margin-left: 4px !important;
     }
 
     div[data-testid="stTabs"] button[aria-selected="true"],
+    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"],
     .stTabs [aria-selected="true"] {
         background-color: #2d4b81 !important;
         color: #ffffff !important;
-        border-color: #535fa1 !important;
-        box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2) !important;
+        border-color: #2d4b81 !important;
+        box-shadow: 0 4px 10px rgba(45, 75, 129, 0.25) !important;
     }
 
     div[data-testid="stTabs"] button[aria-selected="true"] p,
-    div[data-testid="stTabs"] button[aria-selected="true"] span {
+    div[data-testid="stTabs"] button[aria-selected="true"] span,
+    div[data-testid="stTabs"] button[aria-selected="true"] div {
         color: #ffffff !important;
+        font-weight: 800 !important;
+    }
+
+    div[data-testid="stTabPanel"],
+    div[data-testid="stTab"] {
+        padding-top: 1.5rem !important;
+        direction: rtl !important;
+        text-align: right !important;
     }
 
     .stButton button {
@@ -281,7 +305,9 @@ CUSTOM_CSS = """
         color: #ffffff !important;
     }
 
-    /* اصلاح جامع پیام‌ها و چت‌بات */
+    /* ==========================================
+       اصلاح کامل چت‌بات، جدول‌ها، بولت‌ها و شماره‌گذاری‌ها (RTL & Right-Align)
+       ========================================== */
     [data-testid="stChatMessage"] {
         border-radius: 14px !important;
         padding: 1.25rem !important;
@@ -292,8 +318,14 @@ CUSTOM_CSS = """
     }
     
     [data-testid="stChatMessageContent"],
-    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
-    [data-testid="stChatMessage"] div {
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"],
+    [data-testid="stChatMessage"] .stMarkdown {
+        direction: rtl !important;
+        text-align: right !important;
+    }
+
+    [data-testid="stChatMessage"] p,
+    [data-testid="stChatMessageContent"] p {
         direction: rtl !important;
         text-align: justify !important;
         line-height: 1.8 !important;
@@ -302,6 +334,63 @@ CUSTOM_CSS = """
     [data-testid="stChatMessageAvatar"] {
         margin-left: 10px !important;
         margin-right: 0px !important;
+    }
+
+    /* راست‌چین کردن کامل لیست‌های بولت‌دار و شماره‌دار در چت‌بات و مارک‌داون */
+    [data-testid="stChatMessage"] ul,
+    [data-testid="stChatMessage"] ol,
+    [data-testid="stChatMessageContent"] ul,
+    [data-testid="stChatMessageContent"] ol,
+    .stMarkdown ul,
+    .stMarkdown ol {
+        direction: rtl !important;
+        text-align: right !important;
+        padding-right: 1.8rem !important;
+        padding-left: 0 !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    [data-testid="stChatMessage"] li,
+    [data-testid="stChatMessageContent"] li,
+    .stMarkdown li {
+        direction: rtl !important;
+        text-align: right !important;
+        margin-bottom: 0.4rem !important;
+        line-height: 1.8 !important;
+    }
+
+    /* راست‌چین کردن کامل جداول رندر شده در چت‌بات و پاسخ‌های هوش مصنوعی */
+    [data-testid="stChatMessage"] table,
+    [data-testid="stChatMessageContent"] table,
+    .stMarkdown table {
+        direction: rtl !important;
+        text-align: right !important;
+        width: 100% !important;
+        margin: 1rem 0 !important;
+        border-collapse: collapse !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+
+    [data-testid="stChatMessage"] th,
+    [data-testid="stChatMessage"] td,
+    [data-testid="stChatMessageContent"] th,
+    [data-testid="stChatMessageContent"] td,
+    .stMarkdown th,
+    .stMarkdown td {
+        direction: rtl !important;
+        text-align: right !important;
+        padding: 10px 14px !important;
+        border: 1px solid #cbd5e1 !important;
+    }
+
+    [data-testid="stChatMessage"] th,
+    [data-testid="stChatMessageContent"] th,
+    .stMarkdown th {
+        background-color: #f1f5f9 !important;
+        font-weight: 700 !important;
+        color: #1e293b !important;
     }
 
     [data-testid="stChatMessage"]:nth-child(even) {
@@ -748,8 +837,7 @@ with tab2:
 ۳. ارائه KPIهای دقیق ریسک مالی (شامل تخلفات عمده، ریسک اعتباری و عملیاتی، کیفیت وثایق، کفایت سرمایه و غیره) صرفا در صورت مزتبط بودن سوال.
 
 - پاسخ دقیق و بدون تصرف به سوالات کاربر و خواسته های آن در موضوع گزارشات مالی و نظارت بانکی براساس صرفا فایل ورودی است و نه چارچوب خارج از فایل ورودی. 
-- همچنین فقط در صورت نیاز برای پاسخ به سایر استانداردها، شیوه نامه اقدام بانک های ناتراز و چارچوب های مالی مانند CAMELS توجه کن در غیر این صورت نیاز نیست.
-- همه پاسخ ها و جداول بصورت فارسی و راست چین و منظم باشد.
+- همچنین فقط در صورت نیاز برای پاسخ به سایر استانداردها، شیوه نامه اقدام بانک های ناتراز و چارچوب های مالی مانند CAMELS توجه کن در غیر این صورت نیاز نیست. 
 
 ۴. الزامی: در تمامی پاسخ‌ها، هرجا به هر رکورد یا داده‌ای اشاره می‌کنید حتماً مرجع آن را با فرمت دقیق [مرجع: شیت X - ردیف Y] قید نمایید.
         """
@@ -1061,7 +1149,6 @@ with tab2:
 
             st.markdown(camels_table_html, unsafe_allow_html=True)
 
-            # اصلاح کامل راست‌چین و Justify متن کارت‌های جمع‌بندی
             st.markdown(
                 "### 🏛️ جمع‌بندی مدیریتی و اظهار نظر کارشناس ارشد نظارت بانکی"
             )
@@ -1206,7 +1293,6 @@ with tab3:
 
 - پاسخ دقیق و بدون تصرف به سوالات کاربر و خواسته های آن در موضوع گزارشات مالی و نظارت بانکی براساس صرفا فایل ورودی است و نه چارچوب خارج از فایل ورودی. 
 - همچنین فقط در صورت نیاز برای پاسخ به سایر استانداردها، شیوه نامه اقدام بانک های ناتراز و چارچوب های مالی مانند CAMELS توجه کن در غیر این صورت نیاز نیست. 
-- همه پاسخ ها و جداول بصورت فارسی و راست چین و منظم باشد.
 
 ۴. الزامی: در تمامی پاسخ‌ها، هرجا به هر رکورد یا داده‌ای اشاره می‌کنید حتماً مرجع آن را با فرمت دقیق [مرجع: شیت X - ردیف Y] قید نمایید.
         """
@@ -1278,7 +1364,6 @@ with tab3:
                 " ویژه آماده کن که شامل خلاصه انحرافات و ارزیابی نهایی باشد."
             )
 
-        # اصلاح آیکون‌ها و راست‌چین چت‌ها
         for msg in st.session_state.messages:
             avatar_icon = "👤" if msg["role"] == "user" else "🤖"
             with st.chat_message(msg["role"], avatar=avatar_icon):
