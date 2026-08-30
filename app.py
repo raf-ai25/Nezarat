@@ -44,15 +44,15 @@ CUSTOM_CSS = """
         font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
-    html, body, [data-testid="stAppViewContainer"],  [data-testid="stSidebar"] {
+    html, body, [data-testid="stAppViewContainer"], [data-testid="stSidebar"] {
         direction: rtl !important;
         text-align: right !important;
         background-color: #f8fafc;
     }
     
-   /* 2. حذف فاصله از بالای کانتینر اصلی (اصل مشکل اینجاست) */
+    /* 2. حذف فاصله از بالای کانتینر اصلی */
     [data-testid="stMainBlockContainer"], .block-container {
-        padding-top: 2rem !important; /* در صورت نیاز می‌توانید 0rem بگذارید */
+        padding-top: 2rem !important;
     }
 
     /* 3. شفاف‌سازی و کاهش ارتفاع هدر پیش‌فرض استریم‌لیت */
@@ -60,12 +60,11 @@ CUSTOM_CSS = """
         background-color: transparent !important;
         height: 2rem !important;
     }
+
+    /* آیکون‌های متریال استریم‌لیت */
     [class*="material-symbols"],
     [class*="MaterialSymbols"],
-    [data-testid="stIcon"],
-
-    [data-testid="stExpander"] summary span:first-child,
-    span[data-testid="stExpanderToggleIcon"] {
+    [data-testid="stIcon"] {
         font-family: 'Material Symbols Outlined' !important;
         font-weight: normal !important;
         font-style: normal !important;
@@ -73,7 +72,16 @@ CUSTOM_CSS = """
         display: inline-block !important;
         white-space: nowrap !important;
         word-wrap: normal !important;
-        background-color: #daf39e !important;
+    }
+
+    /* اصلاح راست‌چین و Justify متن درون Expander ها */
+    [data-testid="stExpander"] {
+        direction: rtl !important;
+        text-align: right !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 12px !important;
+        background-color: #ffffff !important;
+        margin-bottom: 1rem !important;
     }
     
     [data-testid="stExpander"] summary {
@@ -84,14 +92,16 @@ CUSTOM_CSS = """
         align-items: center !important;
         justify-content: space-between !important;
         gap: 12px !important;
-        background-color: #daf39e !important;
+        background-color: #f1f5f9 !important;
+        border-radius: 10px !important;
+        padding: 0.75rem 1rem !important;
     }
-    
-    [data-testid="stExpander"] summary svg {
-        margin: 0 !important;
-        padding: 0 !important;
-        min-width: 18px !important;
-        min-height: 18px !important;
+
+    [data-testid="stExpander"] [data-testid="stMarkdownContainer"] p,
+    [data-testid="stExpander"] div {
+        direction: rtl !important;
+        text-align: justify !important;
+        line-height: 1.8 !important;
     }
 
     [data-testid="stSidebarCollapseButton"] {
@@ -137,6 +147,8 @@ CUSTOM_CSS = """
         font-size: 1.05rem !important;
         line-height: 1.7 !important;
         margin: 0 !important;
+        direction: rtl !important;
+        text-align: right !important;
     }
 
     .metric-card {
@@ -180,6 +192,8 @@ CUSTOM_CSS = """
         color: #881337;
         margin-bottom: 1.5rem;
         box-shadow: 0 4px 15px rgba(244, 63, 94, 0.1);
+        direction: rtl !important;
+        text-align: justify !important;
     }
 
     .risk-card-recovery {
@@ -190,6 +204,8 @@ CUSTOM_CSS = """
         color: #78350f;
         margin-bottom: 1.5rem;
         box-shadow: 0 4px 15px rgba(245, 158, 11, 0.1);
+        direction: rtl !important;
+        text-align: justify !important;
     }
 
     .risk-card-resolution {
@@ -200,6 +216,8 @@ CUSTOM_CSS = """
         color: #581c87;
         margin-bottom: 1.5rem;
         box-shadow: 0 4px 15px rgba(168, 85, 247, 0.1);
+        direction: rtl !important;
+        text-align: justify !important;
     }
 
     [data-testid="stSidebar"] {
@@ -218,29 +236,39 @@ CUSTOM_CSS = """
         font-weight: 600;
     }
 
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 12px;
-        border-bottom: 2px solid #e2e8f0;
-        padding-bottom: 4px;
+    /* اصلاح جامع Tabها برای سرور کلود */
+    div[data-testid="stTabs"] [data-baseweb="tab-list"] {
+        gap: 12px !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+        padding-bottom: 0px !important;
+        direction: rtl !important;
     }
 
+    div[data-testid="stTabs"] button[data-baseweb="tab"],
     .stTabs [data-baseweb="tab"] {
-        height: 48px;
-        background-color: #ffffff;
-        border-radius: 10px 10px 0 0;
-        padding: 10px 24px;
+        height: 48px !important;
+        background-color: #ffffff !important;
+        border-radius: 10px 10px 0 0 !important;
+        padding: 10px 24px !important;
         font-weight: 700 !important;
         color: #475569 !important;
-        border: 1px solid #e2e8f0;
-        border-bottom: none;
-        transition: all 0.2s ease;
+        border: 1px solid #e2e8f0 !important;
+        border-bottom: none !important;
+        transition: all 0.2s ease !important;
+        direction: rtl !important;
     }
 
+    div[data-testid="stTabs"] button[aria-selected="true"],
     .stTabs [aria-selected="true"] {
-        background-color: #2d4b81  !important;
+        background-color: #2d4b81 !important;
         color: #ffffff !important;
         border-color: #535fa1 !important;
-        box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+        box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2) !important;
+    }
+
+    div[data-testid="stTabs"] button[aria-selected="true"] p,
+    div[data-testid="stTabs"] button[aria-selected="true"] span {
+        color: #ffffff !important;
     }
 
     .stButton button {
@@ -248,26 +276,44 @@ CUSTOM_CSS = """
         font-weight: 800 !important;
         padding: 0.55rem 1.2rem !important;
         transition: all 0.2s ease !important;
-        background-color: #a43232  !important;
+        background-color: #a43232 !important;
         border: 4px solid #f65858 !important;
         color: #ffffff !important;
     }
 
-    .stChatMessage {
+    /* اصلاح جامع پیام‌ها و چت‌بات */
+    [data-testid="stChatMessage"] {
         border-radius: 14px !important;
         padding: 1.25rem !important;
         margin-bottom: 1rem !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        direction: rtl !important;
+        text-align: right !important;
     }
     
+    [data-testid="stChatMessageContent"],
+    [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
+    [data-testid="stChatMessage"] div {
+        direction: rtl !important;
+        text-align: justify !important;
+        line-height: 1.8 !important;
+    }
+
+    [data-testid="stChatMessageAvatar"] {
+        margin-left: 10px !important;
+        margin-right: 0px !important;
+    }
+
     [data-testid="stChatMessage"]:nth-child(even) {
         background-color: #f0f9ff !important;
-        border-right: 5px solid #5390a1  !important;
+        border-right: 5px solid #5390a1 !important;
+        border-left: none !important;
     }
 
     [data-testid="stChatMessage"]:nth-child(odd) {
         background-color: #ffffff !important;
         border-right: 5px solid #10b981 !important;
+        border-left: none !important;
     }
 
     .stTable table, [data-testid="stTable"] table {
@@ -309,10 +355,10 @@ if "risk_prediction_result" not in st.session_state:
 # ۵. منوی کناری (Sidebar Menu)
 # ==========================================
 with st.sidebar:
-    st.markdown("### 🧠 سامانه تحلیل  هوشمند")
+    st.markdown("### 🧠 سامانه تحلیل هوشمند")
 
     st.markdown("---")
-    st.markdown("### ⚙ تنظیمات  ")
+    st.markdown("### ⚙ تنظیمات ")
 
     ttl_minutes = st.slider(
         "⏱️ مدت زمان اعتبار کش (TTL به دقیقه):",
@@ -360,7 +406,6 @@ with st.sidebar:
 
     final_api_key = get_combined_api_key(custom_api_key)
 
-    # به‌روزرسانی مدل‌های فعال و حذف مدل‌های منقضی‌شده
     AVAILABLE_MODELS = ["gemma-4-31b-it"]
 
     model_name = st.selectbox(
@@ -476,7 +521,6 @@ def generate_content_with_retry_and_fallback(
     temp: float = 0.1,
     stream: bool = False,
 ):
-    """در صورت بروز خطای 429 (سهمیه) یا 404 (منقضی بودن مدل)، روی مدل‌های فعال دیگر سوئیچ می‌کند."""
     candidate_models = [primary_model] + [
         m for m in available_models if m != primary_model
     ]
@@ -509,7 +553,6 @@ def generate_content_with_retry_and_fallback(
                 err_msg = str(e)
                 last_error = e
 
-                # اگر مدل منقضی شده باشد (404) یا سهمیه تمام شده باشد (429)
                 if (
                     "404" in err_msg
                     or "not available" in err_msg
@@ -518,7 +561,7 @@ def generate_content_with_retry_and_fallback(
                     or "ResourceExhausted" in err_msg
                 ):
                     if "404" in err_msg or "not available" in err_msg:
-                        break  # بلافاصله مدل منقضی‌شده را رد کرده و به مدل بعدی می‌رود
+                        break
                     if attempt == 0:
                         time.sleep(2)
                         continue
@@ -531,6 +574,7 @@ def generate_content_with_retry_and_fallback(
 
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
+
 # ==========================================
 # ۹. تفکیک برنامه به ۳ زبانه (Tabs)
 # ==========================================
@@ -647,10 +691,6 @@ with tab1:
             })
         st.table(pd.DataFrame(sheet_display))
 
-        # ==========================================
-        # بخش اصلاح‌شده: پیش‌نمایش محتوای شیت‌ها (جدول راست‌چین با فونت فارسی)
-        # ==========================================
-
         st.markdown("### 🔍 پیش‌نمایش محتوای شیت‌ها")
         selected_sheet = st.selectbox(
             "انتخاب شیت جهت پیش‌نمایش داده‌ها:",
@@ -661,7 +701,6 @@ with tab1:
             df_preview = pd.read_excel(uploaded_file, sheet_name=selected_sheet)
             df_sub = df_preview.head(10).fillna("نامشخص/ثبت نشده")
 
-            # رندر خودکار و نیتیو توسط استریم‌لیت
             st.dataframe(
                 df_sub,
                 use_container_width=True,
@@ -704,7 +743,7 @@ with tab2:
 - ⚠️"فاز پیشگیری و آمادگی (Prevention & Readiness)": حتی پیش از بروز بحران، همه بانک‌ها موظفند سناریوهای بحران (Stress Testing) را تمرین کرده و طرح‌های ریکاوری خود را از قبل بنویسند.
 -⚠️ ". فاز مداخله زودهنگام "(Early Intervention)" ورود رسمی ناظر به محض دیدن اولین نشانه‌های ناترازی (اینجا محل صدور اخطار و هشدار و ابلاغ Action Plan است).
 - 🔄 ". فاز بازسازی و ریکاوری (Recovery)": اجرای عملیات نجات دارایی‌ها توسط خودِ بانک تحت نظارت مقیم بانک مرکزی.
--. 🚨  "فاز گزیر یا حل و فصل(Resolution) ": سلب اختیار از مالکان و مدیریت دولتی/حاکمیتی بانک برای جلوگیری از سرایت بحران به کل بازار و ورود به فاز تسویه و خروج از بازار.
+-. 🚨 "فاز گزیر یا حل و فصل(Resolution) ": سلب اختیار از مالکان و مدیریت دولتی/حاکمیتی بانک برای جلوگیری از سرایت بحران به کل بازار و ورود به فاز تسویه و خروج از بازار.
 
 ۳. ارائه KPIهای دقیق ریسک مالی (شامل تخلفات عمده، ریسک اعتباری و عملیاتی، کیفیت وثایق، کفایت سرمایه و غیره) صرفا در صورت مزتبط بودن سوال.
 
@@ -741,14 +780,10 @@ with tab2:
                 except Exception as e:
                     st.error(f"خطا در ارتباط با API گوگل: {str(e)}")
 
-        # ==========================================
-        # بخش ارزیابی جامع بر اساس شاخص‌های شش‌گانه CAMELS
-        # ==========================================
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("### 📊 ارزیابی تخصصی بر اساس شاخص‌های شش‌گانه CAMELS")
 
         st.markdown("<br>", unsafe_allow_html=True)
-        # اجرای تحلیل بر اساس داده‌های سند
         if st.session_state.get("camels_analysis_result") is None:
             if st.button(
                 "🚀 اجرای تحلیل و ارزیابی ریسک بر اساس شاخص‌های CAMELS",
@@ -839,8 +874,6 @@ with tab2:
                         )
 
                         raw_response = res.text.strip()
-
-                        # استخراج دقیق متون بین اولین { و آخرین } برای جلوگیری از خطای JSON
                         json_match = re.search(
                             r"\{.*\}", raw_response, re.DOTALL
                         )
@@ -866,13 +899,11 @@ with tab2:
                     except Exception as ex:
                         st.error(f"خطا در دریافت ارزیابی CAMELS: {str(ex)}")
 
-        # نمایش کارت‌ها، جدول و جمع‌بندی در صورت وجود نتیجه
         if st.session_state.get("camels_analysis_result"):
             camels_data = st.session_state.camels_analysis_result.get(
                 "camels", {}
             )
 
-            # تنظیمات رنگ‌بندی، آیکون و بج‌های وضعیت
             STATUS_CONFIG = {
                 "بحرانی": {
                     "bg": "#fef2f2",
@@ -925,7 +956,6 @@ with tab2:
                 ("sensitivity", "S - حساسیت به ریسک بازار", "fa-chart-area"),
             ]
 
-            # ۱. ۶ کارت مدرن و شیک برای شاخص‌های CAMELS
             st.markdown("#### 📌 خلاصه وضعیت شاخص‌های شش‌گانه")
 
             col_rows = [st.columns(3), st.columns(3)]
@@ -977,8 +1007,6 @@ with tab2:
                     )
 
             st.markdown("<br>", unsafe_allow_html=True)
-
-            # ۲. جدول با Conditional Formatting برای وضعیت ریسک
             st.markdown("#### 📋 جدول تفکیکی شاخص‌های CAMELS و ارزیابی ریسک")
 
             table_rows_html = ""
@@ -991,7 +1019,6 @@ with tab2:
                     status, STATUS_CONFIG["نامشخص/اظهار نظر نشده"]
                 )
 
-                # ساخت تک‌خطی و فشرده سطرهای جدول بدون فاصله و اینتر ابتدای خط
                 row = (
                     '<tr style="border-bottom: 1px solid #e2e8f0; font-size:'
                     ' 0.95rem;"><td style="padding: 12px 16px; font-weight:'
@@ -1006,14 +1033,13 @@ with tab2:
                     ' font-size: 0.88rem; display: inline-block;"><i'
                     f' class="fa-solid {cfg["icon"]}"></i> {status}</span></td><td'
                     ' style="padding: 12px 16px; color: #334155; text-align:'
-                    ' right; line-height:'
+                    ' justify; line-height:'
                     f' 1.6;">{violations}</td><td style="padding: 12px 16px;'
-                    ' color: #334155; text-align: right; line-height:'
+                    ' color: #334155; text-align: justify; line-height:'
                     f' 1.6;">{reasons}</td></tr>'
                 )
                 table_rows_html += row
 
-            # ساخت فشرده و یکپارچه کل جدول HTML
             camels_table_html = (
                 '<div style="overflow-x: auto; border-radius: 12px; border: 1px'
                 " solid #cbd5e1; box-shadow: 0 4px 15px rgba(0,0,0,0.03);"
@@ -1034,14 +1060,13 @@ with tab2:
 
             st.markdown(camels_table_html, unsafe_allow_html=True)
 
-            # ۳. بخش جمع‌بندی مدیریتی و تذکرات ریسک سیستماتیک و سرایت
+            # اصلاح کامل راست‌چین و Justify متن کارت‌های جمع‌بندی
             st.markdown(
                 "### 🏛️ جمع‌بندی مدیریتی و اظهار نظر کارشناس ارشد نظارت بانکی"
             )
 
             res_data = st.session_state.camels_analysis_result
 
-            # باکس اصلی اظهار نظر ارشد
             st.markdown(
                 f"""
                 <div style="
@@ -1052,11 +1077,13 @@ with tab2:
                     color: #ffffff;
                     margin-bottom: 1.5rem;
                     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+                    direction: rtl;
+                    text-align: justify;
                 ">
-                    <h4 style="color: #34d399 !important; margin-top: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                    <h4 style="color: #34d399 !important; margin-top: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; text-align: right;">
                         <i class="fa-solid fa-user-shield"></i> اظهار نظر تخصصی مستشار ارشد مالی و نظارتی
                     </h4>
-                    <p style="color: #f1f5f9; line-height: 1.8; font-size: 1rem; margin-bottom: 0;">
+                    <p style="color: #f1f5f9; line-height: 1.8; font-size: 1rem; margin-bottom: 0; text-align: justify; direction: rtl;">
                         {res_data.get('final_expert_opinion', 'اظهار نظر تخصصی ثبت نشده است.')}
                     </p>
                 </div>
@@ -1064,7 +1091,6 @@ with tab2:
                 unsafe_allow_html=True,
             )
 
-            # کارت‌های تذکر: پرخطرترین، سرایت شبکه بانکی و ریسک‌های سیستماتیک
             warn_col1, warn_col2, warn_col3 = st.columns(3)
 
             with warn_col1:
@@ -1076,11 +1102,13 @@ with tab2:
                         border-radius: 12px;
                         padding: 1.2rem;
                         height: 100%;
+                        direction: rtl;
+                        text-align: justify;
                     ">
-                        <h5 style="color: #9f1239 !important; margin-top: 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+                        <h5 style="color: #9f1239 !important; margin-top: 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; text-align: right;">
                             <i class="fa-solid fa-fire" style="color: #e11d48;"></i> پرخطرترین موارد
                         </h5>
-                        <p style="color: #881337; font-size: 0.92rem; line-height: 1.7; margin-bottom: 0;">
+                        <p style="color: #881337; font-size: 0.92rem; line-height: 1.8; margin-bottom: 0; text-align: justify; direction: rtl;">
                             {res_data.get('high_risk_warning', '-')}
                         </p>
                     </div>
@@ -1097,11 +1125,13 @@ with tab2:
                         border-radius: 12px;
                         padding: 1.2rem;
                         height: 100%;
+                        direction: rtl;
+                        text-align: justify;
                     ">
-                        <h5 style="color: #92400e !important; margin-top: 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+                        <h5 style="color: #92400e !important; margin-top: 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; text-align: right;">
                             <i class="fa-solid fa-network-wired" style="color: #d97706;"></i> ریسک‌های سرایت به شبکه بانکی
                         </h5>
-                        <p style="color: #78350f; font-size: 0.92rem; line-height: 1.7; margin-bottom: 0;">
+                        <p style="color: #78350f; font-size: 0.92rem; line-height: 1.8; margin-bottom: 0; text-align: justify; direction: rtl;">
                             {res_data.get('contagion_risk_warning', '-')}
                         </p>
                     </div>
@@ -1118,11 +1148,13 @@ with tab2:
                         border-radius: 12px;
                         padding: 1.2rem;
                         height: 100%;
+                        direction: rtl;
+                        text-align: justify;
                     ">
-                        <h5 style="color: #075985 !important; margin-top: 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+                        <h5 style="color: #075985 !important; margin-top: 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; text-align: right;">
                             <i class="fa-solid fa-globe" style="color: #0284c7;"></i> ریسک‌های سیستماتیک
                         </h5>
-                        <p style="color: #0c4a6e; font-size: 0.92rem; line-height: 1.7; margin-bottom: 0;">
+                        <p style="color: #0c4a6e; font-size: 0.92rem; line-height: 1.8; margin-bottom: 0; text-align: justify; direction: rtl;">
                             {res_data.get('systemic_risk_warning', '-')}
                         </p>
                     </div>
@@ -1167,7 +1199,7 @@ with tab3:
 - ⚠️"فاز پیشگیری و آمادگی (Prevention & Readiness)": حتی پیش از بروز بحران، همه بانک‌ها موظفند سناریوهای بحران (Stress Testing) را تمرین کرده و طرح‌های ریکاوری خود را از قبل بنویسند.
 -⚠️ ". فاز مداخله زودهنگام "(Early Intervention)" ورود رسمی ناظر به محض دیدن اولین نشانه‌های ناترازی (اینجا محل صدور اخطار و هشدار و ابلاغ Action Plan است).
 - 🔄 ". فاز بازسازی و ریکاوری (Recovery)": اجرای عملیات نجات دارایی‌ها توسط خودِ بانک تحت نظارت مقیم بانک مرکزی.
--. 🚨  "فاز گزیر یا حل و فصل(Resolution) ": سلب اختیار از مالکان و مدیریت دولتی/حاکمیتی بانک برای جلوگیری از سرایت بحران به کل بازار و ورود به فاز تسویه و خروج از بازار.
+-. 🚨 "فاز گزیر یا حل و فصل(Resolution) ": سلب اختیار از مالکان و مدیریت دولتی/حاکمیتی بانک برای جلوگیری از سرایت بحران به کل بازار و ورود به فاز تسویه و خروج از بازار.
 
 ۳. ارائه KPIهای دقیق ریسک مالی (شامل تخلفات عمده، ریسک اعتباری و عملیاتی، کیفیت وثایق، کفایت سرمایه و غیره) صرفا در صورت مزتبط بودن سوال.
 
@@ -1204,11 +1236,8 @@ with tab3:
                 except Exception as e:
                     st.error(f"خطا در ارتباط با API گوگل: {str(e)}")
 
-        # ------------------------------------------
-        # بخش دستیار هوشمند و پرس‌وجوی تخصصی چت
-        # ------------------------------------------
         st.markdown(
-            "### 💬 دستیار تخصصی پرس‌وجو  حوزه پایش سلامت و نظارت بانکی"
+            "### 💬 دستیار تخصصی پرس‌وجو حوزه پایش سلامت و نظارت بانکی"
         )
         st.markdown(
             "می‌توانید سوالات تحلیلی، استعلام ردیف‌های دارای تخلف یا"
@@ -1232,7 +1261,7 @@ with tab3:
             "🔍 ارائه گزارش چند تخلف و ریسک عمده", use_container_width=True
         ):
             preset_prompt = (
-                "کدام  تخلفات و تخطی ها و گزارشات و ردیف‌ها دارای بالاترین سطح"
+                "کدام تخلفات و تخطی ها و گزارشات و ردیف‌ها دارای بالاترین سطح"
                 " ریسک اعتباری/عملیاتی هستند؟ لیست ۵ مورد اول را با شماره شیت و"
                 " سطر مشخص کن."
             )
@@ -1247,8 +1276,10 @@ with tab3:
                 " ویژه آماده کن که شامل خلاصه انحرافات و ارزیابی نهایی باشد."
             )
 
+        # اصلاح آیکون‌ها و راست‌چین چت‌ها
         for msg in st.session_state.messages:
-            with st.chat_message(msg["role"]):
+            avatar_icon = "👤" if msg["role"] == "user" else "🤖"
+            with st.chat_message(msg["role"], avatar=avatar_icon):
                 st.markdown(msg["content"], unsafe_allow_html=True)
 
         user_input = st.chat_input(
@@ -1263,10 +1294,10 @@ with tab3:
             st.session_state.messages.append(
                 {"role": "user", "content": user_input}
             )
-            with st.chat_message("user"):
+            with st.chat_message("user", avatar="👤"):
                 st.markdown(user_input)
 
-            with st.chat_message("assistant"):
+            with st.chat_message("assistant", avatar="🤖"):
                 try:
                     if (
                         st.session_state.cache_object
