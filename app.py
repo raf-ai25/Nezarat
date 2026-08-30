@@ -241,7 +241,7 @@ CUSTOM_CSS = """
        ========================================== */
     div[data-testid="stTabs"] {
         direction: rtl !important;
-        margin-top: 1rem !important;
+        margin-top: 0rem !important;
         margin-bottom: 1.5rem !important;
     }
 
