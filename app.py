@@ -242,14 +242,14 @@ CUSTOM_CSS = """
     div[data-testid="stTabs"] {
         direction: rtl !important;
         margin-top: 0rem !important;
-        margin-bottom: 1.5rem !important;
+        margin-bottom: 3.5rem !important;
     }
 
     div[data-testid="stTabs"] [data-baseweb="tab-list"],
     div[data-testid="stTabs"] > div:first-child {
         gap: 12px !important;
         border-bottom: 2px solid #cbd5e1 !important;
-        padding-bottom: 0px !important;
+        padding-bottom: 3px !important;
         direction: rtl !important;
         justify-content: flex-start !important;
         display: flex !important;
