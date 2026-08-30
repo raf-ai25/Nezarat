@@ -239,61 +239,32 @@ CUSTOM_CSS = """
     /* ==========================================
        اصلاح کامل و جامع Tab ها و فواصل آن‌ها
        ========================================== */
-    div[data-testid="stTabs"] {
-        direction: rtl !important;
-        margin-top: 0rem !important;
-        margin-bottom: 3.5rem !important;
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 12px;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 4px;
     }
 
-    div[data-testid="stTabs"] [data-baseweb="tab-list"],
-    div[data-testid="stTabs"] > div:first-child {
-        gap: 12px !important;
-        border-bottom: 2px solid #cbd5e1 !important;
-        padding-bottom: 3px !important;
-        direction: rtl !important;
-        justify-content: flex-start !important;
-        display: flex !important;
-    }
-
-    div[data-testid="stTabs"] button[data-baseweb="tab"],
-    div[data-testid="stTabs"] button[role="tab"],
     .stTabs [data-baseweb="tab"] {
-        height: 48px !important;
-        background-color: #ffffff !important;
-        border-radius: 10px 10px 0 0 !important;
-        padding: 8px 20px !important;
+        height: 48px;
+        background-color: #ffffff;
+        border-radius: 10px 10px 0 0;
+        padding: 10px 24px;
         font-weight: 700 !important;
-        font-size: 0.95rem !important;
         color: #475569 !important;
-        border: 1px solid #cbd5e1 !important;
-        border-bottom: none !important;
-        transition: all 0.2s ease !important;
-        direction: rtl !important;
-        margin-left: 4px !important;
+        border: 1px solid #e2e8f0;
+        border-bottom: none;
+        transition: all 0.2s ease;
     }
 
-    div[data-testid="stTabs"] button[aria-selected="true"],
-    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"],
     .stTabs [aria-selected="true"] {
-        background-color: #2d4b81 !important;
+        background-color: #2d4b81  !important;
         color: #ffffff !important;
-        border-color: #2d4b81 !important;
-        box-shadow: 0 4px 10px rgba(45, 75, 129, 0.25) !important;
+        border-color: #535fa1 !important;
+        box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
     }
 
-    div[data-testid="stTabs"] button[aria-selected="true"] p,
-    div[data-testid="stTabs"] button[aria-selected="true"] span,
-    div[data-testid="stTabs"] button[aria-selected="true"] div {
-        color: #ffffff !important;
-        font-weight: 800 !important;
-    }
-
-    div[data-testid="stTabPanel"],
-    div[data-testid="stTab"] {
-        padding-top: 1.5rem !important;
-        direction: rtl !important;
-        text-align: right !important;
-    }
+    
 
     .stButton button {
         border-radius: 10px !important;
