@@ -1,0 +1,6 @@
+google-generativeai
+pandas
+streamlit
+textwrap
+re
+json
